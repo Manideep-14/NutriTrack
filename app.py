@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect
 
-app = Flask(_name_)
+app = Flask(__name__)
 
 # Store meals
 meals = []
@@ -70,5 +70,5 @@ def summary():
     )
 
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     app.run(debug=True)

@@ -72,3 +72,24 @@ table th {
     color: #2e8b57;
     font-weight: bold;
 }
+h1{
+    font-size: 32px;
+    font-weight: bold;
+}
+
+h2{
+    color: #2e8b57;
+    margin-bottom: 10px;
+}
+
+.card{
+    transition: 0.3s;
+}
+
+.card:hover{
+    transform: scale(1.02);
+}
+
+.navbar a:hover{
+    color: #256d46;
+}
