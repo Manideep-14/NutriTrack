@@ -1,7 +1,7 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect,flash
 
 app = Flask(__name__)
-
+app.secret_key = "nutritrack123"
 # Store meals
 meals = []
 
@@ -26,6 +26,7 @@ def add_meal():
 
         meals.append(meal)
 
+        flash("Meal added successfully!", "success")
         return redirect("/dashboard")
 
     return render_template("add_meal.html")
@@ -34,10 +35,16 @@ def add_meal():
 # Dashboard
 @app.route("/dashboard")
 def dashboard():
+    total_protein = sum(meal["protein"] for meal in meals)
+
+    protein_goal = 120
+    progress = min((total_protein / protein_goal) * 100, 100)
 
     return render_template(
         "dashboard.html",
-        meals=meals
+        meals=meals,
+        total_protein=total_protein,
+        progress=progress
     )
 
 
@@ -66,9 +73,14 @@ def summary():
         "summary.html",
         total_protein=total_protein,
         total_calories=total_calories,
-        goal_status=goal_status
+        goal_status=goal_status,
+        meal_count=len(meals)
     )
-
+@app.route("/delete/<int:index>")
+def delete_meal(index):
+    if 0 <= index < len(meals):
+        meals.pop(index)
+    return redirect("/dashboard")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=5050)

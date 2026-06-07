@@ -23,36 +23,88 @@
 </div>
 
 <div class="container">
-
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <div style="background:#d4edda; color:#155724; padding:10px; margin-bottom:10px; border-radius:5px;">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
 <div class="card">
 
+<h3>Protein Goal Progress</h3>
+<p>{{ total_protein }}g / 120g</p>
+
+<div class="progress-container">
+    <div class="progress-bar" style="width: {{ progress }}%;"></div>
+</div>
+
+<br>
 <table>
 
 <tr>
-    <th>Food</th>
-    <th>Protein</th>
+    <th>Food Name</th>
+    <th>Protein (g)</th>
     <th>Calories</th>
     <th>Meal Type</th>
+    <th>Action</th>
 </tr>
 
 {% for meal in meals %}
 
 <tr>
-
-<td>{{ meal.food }}</td>
-
-<td>{{ meal.protein }}</td>
-
-<td>{{ meal.calories }}</td>
-
-<td>{{ meal.meal_type }}</td>
-
+    <td>{{ meal.food }}</td>
+    <td>{{ meal.protein }}</td>
+    <td>{{ meal.calories }}</td>
+    <td>{{ meal.meal_type }}</td>
+    <td>
+        <a href="/delete/{{ loop.index0 }}">
+            <button class="delete-btn">Delete</button>
+        </a>
+    </td>
 </tr>
 
 {% endfor %}
 
 </table>
+<h2>Protein Distribution</h2>
 
+<div style="width:500px; height:320px; margin:auto;">
+    <canvas id="proteinChart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const ctx = document.getElementById('proteinChart');
+
+new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: ['Breakfast', 'Lunch', 'Snack', 'Dinner'],
+        datasets: [{
+            data: [21, 45, 10, 43],
+            borderWidth: 1
+        }]
+    },
+    options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+        legend: {
+            position: 'top',
+            labels: {
+                boxWidth: 15,
+                padding: 15
+            }
+        }
+    }
+}
+
+});
+</script>
 </div>
 
 </div>
