@@ -26,7 +26,7 @@
 {% with messages = get_flashed_messages() %}
   {% if messages %}
     {% for message in messages %}
-      <div style="background:#d4edda; color:#155724; padding:10px; margin-bottom:10px; border-radius:5px;">
+      <div style="background:#d4edda; color:#155724; padding: 5px; margin-bottom:10px; border-radius:5px;">
         {{ message }}
       </div>
     {% endfor %}
@@ -41,7 +41,13 @@
     <div class="progress-bar" style="width: {{ progress }}%;"></div>
 </div>
 
-<br>
+<div class="card" style="background:#f8fff8; padding: 5px;px;">
+    <h3>Total Meals</h3>
+    <p style="font-size:20px; font-weight:bold; margin:0;">
+        {{ meals|length }}
+    </p>
+</div>
+</div>
 <table>
 
 <tr>
