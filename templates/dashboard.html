@@ -2,19 +2,40 @@
 <html>
 <head>
 
+<!-- Dashboard Page Title -->
 <title>Dashboard</title>
 
+<!-- External CSS File -->
 <link rel="stylesheet"
       href="{{ url_for('static', filename='style.css') }}">
+
+<!-- Progress Bar Styling -->
+<style>
+.progress-container {
+    width: 100%;
+    height: 20px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #4caf50;
+    transition: width 0.3s ease;
+}
+</style>
 
 </head>
 
 <body>
 
+<!-- Page Header -->
 <header>
     <h1>Meal Dashboard</h1>
 </header>
 
+<!-- Navigation Menu -->
 <div class="navbar">
     <a href="/">Home</a>
     <a href="/add-meal">Add Meal</a>
@@ -22,7 +43,10 @@
     <a href="/summary">Summary</a>
 </div>
 
+<!-- Main Dashboard Container -->
 <div class="container">
+
+<!-- Success Messages After Adding Meals -->
 {% with messages = get_flashed_messages() %}
   {% if messages %}
     {% for message in messages %}
@@ -32,24 +56,28 @@
     {% endfor %}
   {% endif %}
 {% endwith %}
+
+<!-- Protein Goal Progress Section -->
 <div class="card">
+    <h3>Protein Goal Progress</h3>
+    <p>{{ total_protein }}g / 120g</p>
 
-<h3>Protein Goal Progress</h3>
-<p>{{ total_protein }}g / 120g</p>
-
-<div class="progress-container">
-    <div class="progress-bar" style="width: {{ progress }}%;"></div>
+    <div class="progress-container">
+        <div class="progress-bar" style="width: {{ (progress | default(0)) | int }}%"></div>
+    </div>
 </div>
 
-<div class="card" style="background:#f8fff8; padding: 5px;px;">
+<!-- Total Meals Statistics Card -->
+<div class="card" style="background:#f8fff8; padding: 5px;">
     <h3>Total Meals</h3>
     <p style="font-size:20px; font-weight:bold; margin:0;">
         {{ meals|length }}
     </p>
 </div>
-</div>
-<table>
 
+<!-- Meals Data Table -->
+<table>
+<!-- Table Header -->
 <tr>
     <th>Food Name</th>
     <th>Protein (g)</th>
@@ -58,6 +86,7 @@
     <th>Action</th>
 </tr>
 
+<!-- Display Meals Dynamically -->
 {% for meal in meals %}
 
 <tr>
@@ -66,6 +95,7 @@
     <td>{{ meal.calories }}</td>
     <td>{{ meal.meal_type }}</td>
     <td>
+        <!-- Delete Meal Button -->
         <a href="/delete/{{ loop.index0 }}">
             <button class="delete-btn">Delete</button>
         </a>
@@ -75,14 +105,18 @@
 {% endfor %}
 
 </table>
+<!-- Protein Distribution Chart -->
 <h2>Protein Distribution</h2>
 
+<!-- Pie Chart Container -->
 <div style="width:500px; height:320px; margin:auto;">
     <canvas id="proteinChart"></canvas>
 </div>
 
+<!-- Chart.js Library -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+<!-- Protein Distribution Pie Chart -->
 <script>
 const ctx = document.getElementById('proteinChart');
 
@@ -107,8 +141,7 @@ new Chart(ctx, {
             }
         }
     }
-}
-
+    }
 });
 </script>
 </div>

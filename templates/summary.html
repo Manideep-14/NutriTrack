@@ -2,8 +2,10 @@
 <html>
 <head>
 
+<!-- Summary Page Title -->
 <title>Summary</title>
 
+<!-- External CSS File -->
 <link rel="stylesheet"
       href="{{ url_for('static', filename='style.css') }}">
 
@@ -11,10 +13,12 @@
 
 <body>
 
+<!-- Website Header -->
 <header>
     <h1>Daily Summary</h1>
 </header>
 
+<!-- Navigation Menu -->
 <div class="navbar">
     <a href="/">Home</a>
     <a href="/add-meal">Add Meal</a>
@@ -22,20 +26,27 @@
     <a href="/summary">Summary</a>
 </div>
 
+<!-- Main Content Container -->
 <div class="container">
 
+<!-- Nutrition Summary Card -->
 <div class="card">
+
+<!-- Total Meals Count -->
 <h2>Total Meals</h2>
 <p>{{ meal_count }}</p>
 
+<!-- Total Protein Consumed -->
 <h2>Total Protein</h2>
 
 <p>{{ total_protein }} g</p>
 
+<!-- Total Calories Consumed -->
 <h2>Total Calories</h2>
 
 <p>{{ total_calories }}</p>
 
+<!-- Protein Goal Status -->
 <h2>Protein Goal</h2>
 
 <p>{{ goal_status }}</p>

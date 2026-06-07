@@ -3,16 +3,19 @@
 <head>
     <title>Add Meal</title>
 
+<!-- Link to external CSS file -->
     <link rel="stylesheet"
           href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
 
+<!-- Page Header -->
 <header>
     <h1>Add Meal</h1>
 </header>
 
+<!-- Navigation Menu -->
 <div class="navbar">
     <a href="/">Home</a>
     <a href="/add-meal">Add Meal</a>
@@ -20,12 +23,16 @@
     <a href="/summary">Summary</a>
 </div>
 
+<!-- Main Content Container -->
 <div class="container">
-
+    
+    <!-- Add Meal Form Card -->
     <div class="card">
 
+        <!-- Form to collect meal information -->
         <form method="POST">
-
+            
+            <!-- Food Name Input -->
             <label>Food Name</label>
 
             <input
@@ -33,6 +40,7 @@
                 name="food"
                 required>
 
+            <!-- Protein Input -->   
             <label>Protein (g)</label>
 
             <input
@@ -40,6 +48,7 @@
                 name="protein"
                 required>
 
+            <!-- Calories Input -->   
             <label>Calories</label>
 
             <input
@@ -47,6 +56,7 @@
                 name="calories"
                 required>
 
+            <!-- Meal Type Dropdown -->
             <label>Meal Type</label>
 
             <select name="meal_type">
@@ -58,6 +68,7 @@
 
             </select>
 
+             <!-- Submit Button -->
             <button type="submit">
                 Add Meal
             </button>

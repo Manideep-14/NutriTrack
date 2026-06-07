@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- Home Page Title -->
     <title>NutriTrack Dashboard</title>
+
+<!-- External CSS File -->
     <link rel="stylesheet"
           href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
 
+<!-- Website Header -->
 <header>
     <h1>Personal Nutrition & Daily Protein Tracker</h1>
 </header>
 
+<!-- Navigation Menu -->
 <div class="navbar">
     <a href="/">Home</a>
     <a href="/add-meal">Add Meal</a>
@@ -19,7 +24,9 @@
     <a href="/summary">Summary</a>
 </div>
 
+<!-- Main Content Container -->
 <div class="container">
+<!-- Welcome Card -->
 <div class="card">
     <h2>Welcome to NutriTrack</h2>
 
@@ -27,6 +34,7 @@
         Track your daily meals, calories, and protein intake to achieve your nutrition goals.
     </p>
 
+    <!-- Application Features -->
     <h3>Key Features</h3>
 
     <ul>
@@ -37,6 +45,8 @@
         <li>🎯 Protein goal progress tracking</li>
         <li>📝 Daily nutrition summary</li>
     </ul>
+
+<!-- Project Description -->
 <h3>Project Overview</h3>
 
 <p>
@@ -46,10 +56,12 @@ interactive dashboards and visual charts.
 </p>
     <br>
 
+<!-- Start Tracking Button -->
     <a href="/add-meal" class="btn">Start Tracking</a>
 </div>
     
 </div>
+<!-- Website Footer -->
 <footer>
     <p>NutriTrack © 2026 | Flask Nutrition Tracking System</p>
 </footer>

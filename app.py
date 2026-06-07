@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect,flash
+from flask import Flask, render_template, request, redirect, flash  # type: ignore
 
 app = Flask(__name__)
 app.secret_key = "nutritrack123"
